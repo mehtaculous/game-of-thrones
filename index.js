@@ -543,7 +543,7 @@ var CARD_TITLE = "The Seven Kingdoms";
 function getWelcomeResponse(callback) {
     var sessionAttributes = {},
         speechOutput = "Welcome to The Seven Kingdoms. I will ask you " + GAME_LENGTH.toString()
-            + " questions. Try to get as many right as you can. Just say the number of the answer. Let's begin.",
+            + " questions. Try to get as many correct as you can. Just say the number of the answer. Let's begin.",
         shouldEndSession = false,
 
         gameQuestions = populateGameQuestions(),
