@@ -238,7 +238,7 @@ var questions = [
     },
     {
         "You killed her children. Say her name! Prince Oberyn Martell is shouting at the Mountain to say whose name?": [
-            "Elia",
+            "Ellia",
             "Ashara",
             "Obara",
             "Ellaria"
@@ -428,14 +428,9 @@ exports.handler = function (event, context) {
     try {
         console.log("event.session.application.applicationId=" + event.session.application.applicationId);
 
-        /**
-         * Uncomment this if statement and populate with your skill's application ID to
-         * prevent someone else from configuring a skill that sends requests to this function.
-         */
-
-//     if (event.session.application.applicationId !== "amzn1.echo-sdk-ams.app.05aecccb3-1461-48fb-a008-822ddrt6b516") {
-//         context.fail("Invalid Application ID");
-//      }
+        if (event.session.application.applicationId !== "amzn1.echo-sdk-ams.app.62243547-0e42-4255-92b6-211ba40262f5") {
+            context.fail("Invalid Application ID");
+         }
 
         if (event.session.new) {
             onSessionStarted({requestId: event.request.requestId}, event.session);
@@ -543,11 +538,11 @@ function onSessionEnded(sessionEndedRequest, session) {
 
 var ANSWER_COUNT = 4;
 var GAME_LENGTH = 10;
-var CARD_TITLE = "Game of Thrones";
+var CARD_TITLE = "The Seven Kingdoms";
 
 function getWelcomeResponse(callback) {
     var sessionAttributes = {},
-        speechOutput = "Welcome to the Game of Thrones. I will ask you " + GAME_LENGTH.toString()
+        speechOutput = "Welcome to The Seven Kingdoms. I will ask you " + GAME_LENGTH.toString()
             + " questions. Try to get as many right as you can. Just say the number of the answer. Let's begin.",
         shouldEndSession = false,
 
