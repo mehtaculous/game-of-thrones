@@ -542,15 +542,9 @@ var CARD_TITLE = "The Seven Kingdoms";
 
 function getWelcomeResponse(callback) {
     var sessionAttributes = {},
-        speechText = "<speak><audio src='https://s3-eu-west-1.amazonaws.com/57647285525fb836561944563.samehta91/samehta91gmail.comtheme.mp3'/> Welcome to The Seven Kingdoms. I will ask you " + GAME_LENGTH.toString()
-            + " questions. Try to get as many correct as you can. Just say the number of the answer. Let's begin. </speak>",
-        speechObject = {
-            type: "SSML",
-            ssml: speechText
-        },
-        
+        speechOutput = "<speak><audio src='https://s3-eu-west-1.amazonaws.com/57647285525fb836561944563.samehta91/samehta91gmail.comtheme.mp3'/>Welcome to The Seven Kingdoms. I will ask you " + GAME_LENGTH.toString()
+            + " questions. Try to get as many correct as you can. Just say the number of the answer. Let's begin.</speak>",
         shouldEndSession = false,
-
 
         gameQuestions = populateGameQuestions(),
         correctAnswerIndex = Math.floor(Math.random() * (ANSWER_COUNT)), // Generate a random index for the correct answer, from 0 to 3
@@ -565,7 +559,7 @@ function getWelcomeResponse(callback) {
     for (i = 0; i < ANSWER_COUNT; i++) {
         repromptText += (i+1).toString() + ". " + roundAnswers[i] + ". "
     }
-    speechObject += repromptText;
+    speechOutput += repromptText;
     sessionAttributes = {
         "speechOutput": repromptText,
         "repromptText": repromptText,
@@ -577,7 +571,7 @@ function getWelcomeResponse(callback) {
             questions[gameQuestions[currentQuestionIndex]][Object.keys(questions[gameQuestions[currentQuestionIndex]])[0]][0]
     };
     callback(sessionAttributes,
-        buildSpeechletResponse(CARD_TITLE, speechObject, repromptText, shouldEndSession));
+        buildSpeechletResponse(CARD_TITLE, speechOutput, repromptText, shouldEndSession));
 }
 
 function populateGameQuestions() {
