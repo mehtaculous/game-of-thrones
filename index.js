@@ -223,7 +223,7 @@ var questions = [
     {
         "Before he was killed, Ser Rodrik Cassel said which haunting last words?": [
             "Gods help you, Theon Greyjoy. Now you are truly lost.",
-            "Please..I'm afraid..I've always been afraid.",
+            "Please. I'm afraid. I've always been afraid.",
             "Kill me, and be cursed. You are no king of mine.",
             "Unhand her. I shall have your head for this!"
         ]
@@ -540,11 +540,12 @@ var ANSWER_COUNT = 4;
 var GAME_LENGTH = 10;
 var CARD_TITLE = "The Seven Kingdoms";
 
-// <audio src='https://s3-eu-west-1.amazonaws.com/57647285525fb836561944563.samehta91/samehta91gmail.comtheme.mp3'/>
-
 function getWelcomeResponse(callback) {
     var sessionAttributes = {},
-        speechOutput = "Welcome to The Seven Kingdoms. I will ask you " + GAME_LENGTH.toString() + " questions. Try to get as many correct as you can. Just say the number of the answer. Let's begin.",
+        speechOutput = {
+            speech: "<speak><audio src='https://s3-eu-west-1.amazonaws.com/57647285525fb836561944563.samehta91/samehta91gmail.comtheme.mp3'/><break time = \"0.5s\"/>Welcome to The Seven Kingdoms. I will ask you " + GAME_LENGTH.toString() + " questions. Try to get as many correct as you can. Just say the number of the answer. Let's begin. </speak>",
+            type: "SSML"
+        },
         shouldEndSession = false,
 
         gameQuestions = populateGameQuestions(),
